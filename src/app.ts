@@ -17,7 +17,9 @@ async function main() {
             53.545, 9.936   // Hamburg
         );
 
-        fs.writeFileSync("log.txt", `${date.toISOString()};${sunPos}\r\n`)
+        const angle = sunPos.altitude * 180 / Math.PI;
+
+        fs.appendFileSync("log.txt", `${date.toISOString()};${angle}\r\n`)
     }
 }
 
