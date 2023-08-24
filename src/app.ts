@@ -11,12 +11,13 @@ async function main() {
     const hour = 1000 * 60 * 60; // in milliseconds
 
     for (let current = start.getTime(); current <= end.getTime(); current += hour) {
+        const date = new Date(current);
         const sunPos = getPosition(
-            new Date(current),
-            53.545, 9.936
+            date,
+            53.545, 9.936   // Hamburg
         );
 
-        console.log(sunPos.altitude * 180 / Math.PI);
+        fs.writeFileSync("log.txt", `${date.toISOString()};${sunPos}\r\n`)
     }
 }
 
